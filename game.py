@@ -151,6 +151,8 @@ class AvoidLife(arcade.Window):
 
         if self.current_state == RUNNING:
             self.time += delta_time
+            self.scrolling_text()
+            self.sprites.update()
 
         if self.current_state == PAUSE:
             return
@@ -164,8 +166,6 @@ class AvoidLife(arcade.Window):
         if self.player.collides_with_list(self.rising):
             self.game_over()
 
-        self.sprites.update()
-
         if self.player.top > self.height:
             self.player.top = self.height
 
@@ -178,8 +178,6 @@ class AvoidLife(arcade.Window):
         if self.player.bottom < 0:
             self.player.bottom = 0
 
-        self.scrolling_text()
-
         if self.age > 18:
             self.phase = "an ADULT"
             self.falling_text()
@@ -188,7 +186,7 @@ class AvoidLife(arcade.Window):
             self.phase = "OLD"
             self.rising_text()
 
-        if self.age >= 60:
+        if self.age >= 59:
             self.game_finished()
 
     def on_draw(self):
@@ -197,7 +195,7 @@ class AvoidLife(arcade.Window):
 
         self.age = int(self.time) % 60
 
-        self.draw_background()
+        # self.draw_background()
 
         if self.current_state == START:
             self.draw_meme(START)
@@ -345,7 +343,7 @@ class AvoidLife(arcade.Window):
             self.setup()
             self.current_state = RUNNING
 
-        if symbol == arcade.key.Q:
+        if symbol == arcade.key.Q or symbol == arcade.key.ESCAPE:
             arcade.close_window()
 
         if symbol == arcade.key.P:

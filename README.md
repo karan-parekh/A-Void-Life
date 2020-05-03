@@ -11,7 +11,7 @@ An arcade game to help you avoid responsibilities in Life
 - Run ```$ python game.py``` from within the project directory
 
 ## Gameplay
-- Use arrow keys to move player
+- Use arrow keys to avoid responsibilities
 - Press "F" to start game
 - Press "P" to pause game
 - Press "R" or "Q" at any point to restart or quit game
