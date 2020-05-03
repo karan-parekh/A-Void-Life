@@ -52,8 +52,6 @@ def get_responsibilities(folder : str) -> list:
     basepath = "sprites\\responsibilities\\{}".format(folder)
     files = []
 
-    print(os.getcwd())
-
     for file in os.listdir(basepath):
 
         if os.path.isfile(os.path.join(basepath, file)):
@@ -188,7 +186,7 @@ class AvoidLife(arcade.Window):
             self.phase = "OLD"
             self.rising_text()
 
-        if self.age >= 59:
+        if self.age >= 5:
             self.game_finished()
 
     def on_draw(self):
@@ -320,10 +318,10 @@ class AvoidLife(arcade.Window):
         left, width, bottom, height = self.get_viewport()
 
         if not x and not y:
-            x = width / 2
-            y = height / 2
+            x = width * 0.75
+            y = height * 0.75
 
-        arcade.draw_text(text, x, y, color, size, align=align)
+        arcade.draw_text(text, x, y, color, size, align=align, anchor_x='center', anchor_y='center')
 
     def draw_meme(self, meme):
 
