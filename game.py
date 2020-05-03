@@ -45,12 +45,14 @@ REST IN PEACE
 """
 
 
-BACKGROUND = "sprites/background/hyperspace2.jpeg"
+BACKGROUND = "sprites\\background\\hyperspace2.jpeg"
 
 
 def get_responsibilities(folder : str) -> list:
-    basepath = "sprites/responsibilities/{}".format(folder)
+    basepath = "sprites\\responsibilities\\{}".format(folder)
     files = []
+
+    print(os.getcwd())
 
     for file in os.listdir(basepath):
 
@@ -112,10 +114,10 @@ class AvoidLife(arcade.Window):
         self.background = None
         self.memes = {}
 
-        start = arcade.load_texture("sprites/memes/start.jpg")
-        pause = arcade.load_texture("sprites/memes/pause.jpg")
-        game_over = arcade.load_texture("sprites/memes/game_over.jpg")
-        finished  = arcade.load_texture("sprites/memes/dancing-funeral.jpg")
+        start = arcade.load_texture("sprites\\memes\\start.jpg")
+        pause = arcade.load_texture("sprites\\memes\\pause.jpg")
+        game_over = arcade.load_texture("sprites\\memes\\game_over.jpg")
+        finished  = arcade.load_texture("sprites\\memes\\dancing-funeral.jpg")
 
         self.memes[START] = start
         self.memes[PAUSE] = pause
@@ -134,7 +136,7 @@ class AvoidLife(arcade.Window):
         self.background = arcade.load_texture(BACKGROUND)
         self.phase = "a CHILD"
 
-        self.player = arcade.Sprite("sprites/player/plane.png", SCALE)
+        self.player = arcade.Sprite("sprites\\player\\plane.png", SCALE)
         self.player.center_y = self.height / 2
         self.player.left = 10
 
@@ -243,7 +245,7 @@ class AvoidLife(arcade.Window):
             return
 
         res = random.choice(MINOR)
-        text = ScrollingText("sprites/responsibilities/minor/{}".format(res), 1)
+        text = ScrollingText("sprites\\responsibilities\\minor\\{}".format(res), 1)
 
         text.left = random.randint(self.width, self.width + 80)
         text.top = random.randint(10, self.height - 10)
@@ -259,7 +261,7 @@ class AvoidLife(arcade.Window):
             return
 
         res  = random.choice(ADULT)
-        text = FallingText("sprites/responsibilities/adult/{}".format(res), 1)
+        text = FallingText("sprites\\responsibilities\\adult\\{}".format(res), 1)
 
         text.center_x = random.randrange(self.width)
         text.center_y = random.randrange(self.height, self.height+100)
@@ -275,7 +277,7 @@ class AvoidLife(arcade.Window):
             return
 
         res  = random.choice(OLD)
-        text = RisingText("sprites/responsibilities/old/{}".format(res))
+        text = RisingText("sprites\\responsibilities\\old\\{}".format(res))
 
         text.center_x = random.randrange(self.width)
         text.center_y = random.randrange(-10, 0)
