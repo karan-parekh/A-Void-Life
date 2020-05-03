@@ -16,12 +16,14 @@ FINISHED  = 5
 SPEED = 10
 
 START_TEXT = """
-PRESS 'S' TO START
+CAN YOU AVOID ALL
 
-PRESS 'P' TO PAUSE
- 
-PRESS 'Q'TO QUIT
- """
+THE RESPONSIBILITIES
+
+IN LIFE?
+
+PRESS 'F' TO FIND OUT
+"""
 
 GAME_OVER_TEXT = """
 GAME OVER
@@ -100,6 +102,7 @@ class AvoidLife(arcade.Window):
         self.current_state = START
         self.time = 0.0
         self.age  = 0
+        self.phase = "a CHILD"
 
         self.scrolling = arcade.SpriteList()
         self.falling   = arcade.SpriteList()
@@ -129,6 +132,7 @@ class AvoidLife(arcade.Window):
     def setup(self):
 
         self.background = arcade.load_texture(BACKGROUND)
+        self.phase = "a CHILD"
 
         self.player = arcade.Sprite("sprites/player/plane.png", SCALE)
         self.player.center_y = self.height / 2
@@ -177,9 +181,11 @@ class AvoidLife(arcade.Window):
         self.scrolling_text()
 
         if self.age > 18:
+            self.phase = "an ADULT"
             self.falling_text()
 
         if self.age > 45:
+            self.phase = "OLD"
             self.rising_text()
 
         if self.age >= 60:
@@ -190,7 +196,6 @@ class AvoidLife(arcade.Window):
         arcade.start_render()
 
         self.age = int(self.time) % 60
-        time = "AGE: {age:02d}".format(age=self.age)
 
         self.draw_background()
 
@@ -204,7 +209,7 @@ class AvoidLife(arcade.Window):
 
         elif self.current_state == RUNNING:
             self.draw_game()
-            self.show_timer(time)
+            self.show_info()
 
         elif self.current_state == FINISHED:
             self.draw_meme(FINISHED)
@@ -222,7 +227,7 @@ class AvoidLife(arcade.Window):
 
         score = "YOU SURVIVED \n{age} YEARS".format(age=age)
 
-        arcade.draw_text(score, right - 500, bottom + 50, arcade.color.WHITE, 40, align='center')
+        arcade.draw_text(score, right - 550, bottom + 250, arcade.color.WHITE, 40, align='center')
 
     def game_over(self):
         arcade.pause(0.2)
@@ -297,11 +302,17 @@ class AvoidLife(arcade.Window):
                                             width, height,
                                             self.background)
 
-    def show_timer(self, time):
+    def show_info(self):
 
-        _, right, _, top = self.get_viewport()
+        left, right, bottom, top = self.get_viewport()
 
-        arcade.draw_text(time, right - 150, top - 50, arcade.color.WHITE, 20)
+        info  = "Press P to pause"
+        age   = "AGE: {age:02d}".format(age=self.age)
+        level = "You are {}".format(self.phase)
+
+        arcade.draw_text(age, right-150, top-50, arcade.color.WHITE, 20)
+        arcade.draw_text(info, left+50, top-50, arcade.color.WHITE, 20)
+        arcade.draw_text(level, self.width/2 - 50, top-50, arcade.color.WHITE, 20)
 
     def write_text(self, text: str, x=None, y=None,
                    color=arcade.color.WHITE, size=50, align='center'):
@@ -329,7 +340,7 @@ class AvoidLife(arcade.Window):
 
     def on_key_press(self, symbol: int, modifiers: int):
 
-        if symbol == arcade.key.S:
+        if symbol == arcade.key.F:
             self.reset_game()
             self.setup()
             self.current_state = RUNNING
