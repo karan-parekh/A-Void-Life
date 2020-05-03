@@ -7,11 +7,13 @@ An arcade game to help you avoid responsibilities in Life
 
 ## Installation
 - Download zip or clone repository
-- Run ```python game.py``` from within the folder
+- Run ```$ pip install -r requirements.txt```
+- Run ```$ python game.py``` from within the project directory
 
 ## Gameplay
 - Use arrow keys to move player
-- Press "P" to pause the game
+- Press "F" to start game
+- Press "P" to pause game
 - Press "R" or "Q" at any point to restart or quit game
 
 ## Objective
