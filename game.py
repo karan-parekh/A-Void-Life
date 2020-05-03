@@ -145,7 +145,8 @@ class AvoidLife(arcade.Window):
 
     def on_update(self, delta_time):
 
-        self.time += delta_time
+        if self.current_state == RUNNING:
+            self.time += delta_time
 
         if self.current_state == PAUSE:
             return
@@ -181,7 +182,7 @@ class AvoidLife(arcade.Window):
         if self.age > 45:
             self.rising_text()
 
-        if self.age >= 20:
+        if self.age >= 60:
             self.game_finished()
 
     def on_draw(self):
@@ -210,7 +211,7 @@ class AvoidLife(arcade.Window):
             self.write_text(GAME_FINISHED_TEXT)
             self.show_score(self.age)
 
-        else:
+        elif self.current_state == GAME_OVER:
             self.draw_meme(GAME_OVER)
             self.write_text(GAME_OVER_TEXT, size=40, align='center')
             self.show_score(self.age)
