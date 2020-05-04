@@ -2,14 +2,20 @@
 An arcade game to help you avoid responsibilities in Life
 
 ## Installation
-- Download zip from [drive](https://drive.google.com/open?id=1dRQLDanlVZNiMHldzM3mPCL4cU_pcS6D)
-- Unzip and run life.exe
+1. Download zip from [drive](https://drive.google.com/open?id=1dRQLDanlVZNiMHldzM3mPCL4cU_pcS6D)
+2. Unzip and run life.exe
 - Requires Windows OS
 
 ### OR 
-- Download zip or clone repository
-- Run ```$ pip install -r requirements.txt```
-- Run ```$ python game.py``` from within the project directory
+1. Download zip or clone [repository](https://github.com/karan-parekh/A-Void-Life)
+2. Go to ```dist``` folder
+3. Run life.exe
+- Requires Windows OS
+
+### OR 
+1. Download zip or clone [repository](https://github.com/karan-parekh/A-Void-Life)
+2. Run ```$ pip install -r requirements.txt```
+3. Run ```$ python game.py``` from within the project directory
 - Requires Python installed on machine
 
 ## Gameplay
@@ -20,3 +26,7 @@ An arcade game to help you avoid responsibilities in Life
 
 ## Objective
 - Survive for 60 years in game
+
+## About
+- Game is developed using the [arcade](https://arcade.academy/) library
+- Text sprites generated from this [website](http://www.picturetopeople.org/)
